@@ -125,7 +125,7 @@
     ("1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
  '(package-selected-packages
    (quote
-    (toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
+    (erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
  '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
