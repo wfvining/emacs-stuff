@@ -1,6 +1,5 @@
 The original color scheme can still be found in `color.el`
-
-````emacs-lisp
+```emacs-lisp
 (load-file "~/.emacs.d/lisp/color.el")
 ```
 
