@@ -1,12 +1,9 @@
 (deftheme wfv-color
-  "Created 2017-04-03.")
+  "Created 2017-04-16.")
 
 (custom-theme-set-variables
  'wfv-color
- '(custom-safe-themes (quote ("1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
- '(which-function-mode t)
- '(electric-pair-mode t)
- '(package-selected-packages (quote (erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit))))
+ )
 
 (custom-theme-set-faces
  'wfv-color
@@ -26,6 +23,9 @@
  '(shadow ((t (:foreground "grey16"))))
  '(show-paren-match ((t (:background "gold" :foreground "black"))))
  '(show-paren-mismatch ((t (:background "deep pink" :foreground "gray18"))))
+ '(org-verbatim ((t (:foreground "white" :slant italic :family "Luxi Mono"))))
+ '(org-block ((t (:inherit org-verbatim))))
+ '(hl-line ((t (:background "gray26"))))
  '(which-func ((t (:foreground "maroon3"))))
  '(org-done ((t (:foreground "#8ae234"))))
  '(org-level-4 ((t (:inherit outline-7))))

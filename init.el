@@ -1,7 +1,5 @@
 ;; ------ Marmalade ------
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa") t)
 (package-initialize)
@@ -73,6 +71,9 @@
                              "~/org/projects.org"
                              ))
 
+;(global-set-key "\C-/" 'help-command)
+(global-set-key "\C-h"   'backspace)
+
 ;; ------ Rust -----
 ;; (add-to-list 'load-path "~/.emacs.d/modes/rust-mode/")
 ;; (autoload 'rust-mode "rust-mode" nil t)
@@ -112,6 +113,30 @@
 ;;  '(debug-on-quit t)
 ;;  '(which-function-mode t))
 
+;; Ivy configuration
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
+
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+
+;; Ivy-based interface to shell and system tools
+;; I'm not planning on using these right now.
+;; (global-set-key (kbd "C-c g") 'counsel-git)
+;; (global-set-key (kbd "C-c j") 'counsel-git-grep)
+;; (global-set-key (kbd "C-c k") 'counsel-ag)
+;; (global-set-key (kbd "C-x l") 'counsel-locate)
+;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+
+;; Apearance 
 (global-hl-line-mode t) ; turn it on for all modes by default
 
 (custom-set-variables
@@ -122,10 +147,10 @@
  '(custom-enabled-themes (quote (wfv-gray-nobold)))
  '(custom-safe-themes
    (quote
-    ("1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
+    ("6ab99af7083324cd2b32f62c52f1f4b2314fb0eaf2157154cfbb11f7827e8f46" "03ca904a51daef657536e604cd2e8679ecf125478fa475710561f56c3c5de103" "7f0d9571d984e14ad672f407b79febf86b6a133e316aba375cfc05860b4142cd" "1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
  '(package-selected-packages
    (quote
-    (erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
+    (counsel erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
  '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
