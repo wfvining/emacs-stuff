@@ -211,6 +211,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "DAMA" :family "Hack"))))
  '(error ((t (:foreground "firebrick1" :weight bold))))
  '(fringe ((t (:background "gray35"))))
  '(highlight ((t (:background "gray21"))))
