@@ -58,17 +58,18 @@
 (setq erlang-indent-level 4)
 
 ;; ------ Haskell ------
-(setq haskell-program-name "ghci")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(require 'haskell-mode)
+;(setq haskell-program-name "ghci")
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;; (require 'haskell-mode)
 
 ;; ------ Org ------
 (global-set-key "\C-ca" 'org-agenda)
-(setq org-agenda-files (list "~/org/life.org"
-                             "~/org/linguistics.org"
-                             "~/org/projects.org"
+(setq org-agenda-files (list "~/org/bc-lab.org"
+                             "~/org/cs591.org"
+                             "~/org/swarmathon.org"
+                             "~/org/cs561.org"
                              ))
 
 ;(global-set-key "\C-/" 'help-command)
@@ -88,7 +89,7 @@
 ;;    '(make-backup-files nil))
 
 ;; ------ Scheme ------
-(setq scheme-program-name "racket")
+(setq scheme-program-name "guile")
 
 ;;(require 'mac-key-mode)
 ;;(mac-key-mode 1)
@@ -126,6 +127,9 @@
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
+;; Company mode
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-idle-delay 0)
 ;; Ivy-based interface to shell and system tools
 ;; I'm not planning on using these right now.
 ;; (global-set-key (kbd "C-c g") 'counsel-git)
@@ -157,6 +161,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "simp" :family "Hack"))))
  '(error ((t (:foreground "firebrick1" :weight bold))))
  '(fringe ((t (:background "gray35"))))
  '(highlight ((t (:background "gray21"))))
@@ -168,7 +173,9 @@
  '(org-document-info ((t (:foreground "white smoke" :slant italic))))
  '(org-document-title ((t (:foreground "white" :weight bold))))
  '(org-footnote ((t (:inherit link))))
+ '(org-list-dt ((t (:foreground "deep sky blue" :weight bold))))
  '(org-table ((t (:foreground "DodgerBlue1"))))
+ '(org-verbatim ((t (:inherit nil :foreground "white" :weight semi-bold))))
  '(region ((t (:background "slate grey"))))
  '(shadow ((t (:foreground "grey16"))))
  '(show-paren-match ((t (:background "gold" :foreground "black"))))
