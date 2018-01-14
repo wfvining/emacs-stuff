@@ -144,32 +144,60 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (wfv-gray-nobold)))
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
+ '(custom-enabled-themes (quote (wfv-color)))
  '(custom-safe-themes
    (quote
-    ("6ab99af7083324cd2b32f62c52f1f4b2314fb0eaf2157154cfbb11f7827e8f46" "03ca904a51daef657536e604cd2e8679ecf125478fa475710561f56c3c5de103" "7f0d9571d984e14ad672f407b79febf86b6a133e316aba375cfc05860b4142cd" "1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
+    ("6e64644c0c814c9b987d80078e6d0b2a3cea65d9d2300d80378728e6053842e1" "6ab99af7083324cd2b32f62c52f1f4b2314fb0eaf2157154cfbb11f7827e8f46" "03ca904a51daef657536e604cd2e8679ecf125478fa475710561f56c3c5de103" "7f0d9571d984e14ad672f407b79febf86b6a133e316aba375cfc05860b4142cd" "1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
+ '(org-agenda-files
+   (quote
+    ("~/org/tomorrow.org" "~/org/reading.org" "~/org/bc-lab.org" "~/org/cs556.org" "~/org/cs591.org" "~/org/swarmathon.org" "~/org/cs561.org" "~/org/cs530.org" "~/org/emm.org")))
  '(package-selected-packages
    (quote
-    (counsel erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
+    (org stack-mode markdown-mode matlab-mode haskell-mode yaml-mode counsel erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
  '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(error ((t (:foreground "firebrick1" :weight bold))))
- '(fringe ((t (:background "gray35"))))
- '(highlight ((t (:background "gray21"))))
- '(isearch ((t (:background "coral1" :foreground "gray26"))))
- '(link ((t (:foreground "SteelBlue1" :underline t))))
- '(minibuffer-prompt ((t (:foreground "SteelBlue1"))))
- '(mode-line ((t (:background "gray55" :foreground "black" :box (:line-width -1 :style released-button)))))
- '(org-date ((t (:foreground "turquoise" :underline t))))
- '(org-document-info ((t (:foreground "white smoke" :slant italic))))
- '(org-document-title ((t (:foreground "white" :weight bold))))
- '(org-footnote ((t (:inherit link))))
- '(org-table ((t (:foreground "DodgerBlue1"))))
- '(region ((t (:background "slate grey"))))
- '(shadow ((t (:foreground "grey16"))))
- '(show-paren-match ((t (:background "gold" :foreground "black"))))
- '(show-paren-mismatch ((t (:background "deep pink" :foreground "gray18")))))
+ '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "DAMA" :family "Hack"))))
+ '(org-verbatim ((t (:foreground "white" :slant normal :family "Mono")))))
+
+;(require 'org-publish)
+(setq org-publish-project-alist
+      '(
+
+        ("org-notes"
+         :base-directory "~/website/"
+         :base-extension "org"
+         :publishing-directory "/ssh:wfvining@mack.cs.unm.edu:public_html/"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/gen_style.css\" />"
+         :html-head-extra "<link href=\"https://fonts.googleapis.com/css?family=Playfair+Display|Raleway\" rel=\"stylesheet\"><link rel=\"icon\" href=\"img/icon.png\" />"
+         :html-head-include-default-style nil
+         :html-toplevel-hlevel 1
+         :headline-levels 4
+         :auto-preamble t
+         :with-toc nil
+         :with-title nil
+         :section-numbers nil
+         :html-postamble nil
+         :html-preamble "<ul class=\"menu\" id=\"top\"><li class=\"menu\"><a href=\"index.html\">Home</a></li><li class=\"menu\"><a href=\"index.html#misc\">Miscellany</a></li><li class=\"menu\"><a href=\"index.html#publications\">Publications</a></li></ul>"
+         )
+
+        ("org-static"
+         :base-directory "~/website/"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg"
+         :publishing-directory "/ssh:wfvining@mack.cs.unm.edu:public_html/"
+         :recursive t
+         :publishing-function org-publish-attachment
+         )
+        
+        ("website" :components ("org-notes" "org-static"))
+        
+        ))
