@@ -222,7 +222,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-<<<<<<< HEAD
  '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "simp" :family "Hack"))))
  '(error ((t (:foreground "firebrick1" :weight bold))))
  '(fringe ((t (:background "gray35"))))
@@ -257,13 +256,13 @@
          :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/gen_style.css\" />"
          :html-head-extra "<link href=\"https://fonts.googleapis.com/css?family=Playfair+Display|Raleway\" rel=\"stylesheet\"><link rel=\"icon\" href=\"img/icon.png\" />"
          :html-head-include-default-style nil
-         :html-toplevel-hlevel 1
+         :html-toplevel-hlevel 0
          :headline-levels 4
          :auto-preamble t
          :with-toc nil
          :with-title nil
          :section-numbers nil
-         :html-postamble nil
+         :html-postamble "Published on %T"
          :html-preamble "<ul class=\"menu\" id=\"top\"><li class=\"menu\"><a href=\"index.html\">Home</a></li><li class=\"menu\"><a href=\"index.html#misc\">Miscellany</a></li><li class=\"menu\"><a href=\"index.html#publications\">Publications</a></li></ul>"
          )
 
