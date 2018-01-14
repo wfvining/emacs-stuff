@@ -1,8 +1,62 @@
-;; ------ Marmalade ------
+;; ------ Packages ------
+;;
+;; A lot (all) of this came from ohai-package (github.com/bodil/ohai-emacs)
+
+;; `(online?)` is a function that tries to detect whether you are online.
+;; We want to refresh our package list on Emacs start if we are.
+(require 'cl)
+(defun online? ()
+  (if (and (functionp 'network-interface-list)
+           (network-interface-list))
+      (some (lambda (iface) (unless (equal "lo" (car iface))
+                              (member 'up (first (last (network-interface-info
+                                                        (car iface)))))))
+            (network-interface-list))
+    t))
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa") t)
 (package-initialize)
+
+;; If we're online, we attempt to fetch the package directories if
+;; we don't have a local copy already. This lets us start installing
+;; packages right away from a clean install.
+(when (online?)
+  (unless package-archive-contents (package-refresh-contents)))
+
+;; `Paradox' is an enhanced interface for package management, which also
+;; provides some helpful utility functions we're going to be using
+;; extensively. Thus, the first thing we do is install it if it's not there
+;; already.
+(when (not (package-installed-p 'paradox))
+  (package-install 'paradox))
+
+;; We're going to be using `use-package' to manage our dependencies.
+;; In its simplest form, we can call eg. `(use-package lolcode-mode)'
+;; to install the `lolcode-mode' package. We'd also declare one or more
+;; entry points so the module isn't loaded unneccesarily at startup.
+;; For instance, `(use-package my-module :commands (my-function))' will
+;; defer loading `my-module' until you actually call `(my-function)'.
+;;
+;; Read about it in detail at https://github.com/jwiegley/use-package
+
+;; First, we make sure it's installed, using a function provided by
+;; Paradox, which we've just installed the hard way.
+(paradox-require 'use-package)
+
+;; Next, we load it so it's always available.
+(require 'use-package)
+
+;; Finally, we enable `use-package-always-ensure' which makes
+;; use-package install every declared package automatically from ELPA,
+;; instead of expecting you to do it manually.
+(setq use-package-always-ensure t)
+
+;; ------ Packages That I use ------
+(use-package counsel)
+(use-package magit)
+(use-package company)
+(use-package haskell-mode)
 
 ;; basic appearance stuff
 (column-number-mode t)
@@ -201,3 +255,22 @@
         ("website" :components ("org-notes" "org-static"))
         
         ))
+
+ ;; '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "DAMA" :family "Hack"))))
+ ;; '(error ((t (:foreground "firebrick1" :weight bold))))
+ ;; '(fringe ((t (:background "gray35"))))
+ ;; '(highlight ((t (:background "gray21"))))
+ ;; '(isearch ((t (:background "coral1" :foreground "gray26"))))
+ ;; '(link ((t (:foreground "SteelBlue1" :underline t))))
+ ;; '(minibuffer-prompt ((t (:foreground "SteelBlue1"))))
+ ;; '(mode-line ((t (:background "gray55" :foreground "black" :box (:line-width -1 :style released-button)))))
+ ;; '(org-date ((t (:foreground "turquoise" :underline t))))
+ ;; '(org-document-info ((t (:foreground "white smoke" :slant italic))))
+ ;; '(org-document-title ((t (:foreground "white" :weight bold))))
+ ;; '(org-footnote ((t (:inherit link))))
+ ;; '(org-table ((t (:foreground "DodgerBlue1"))))
+ ;; '(region ((t (:background "slate grey"))))
+ ;; '(shadow ((t (:foreground "grey16"))))
+ ;; '(show-paren-match ((t (:background "gold" :foreground "black"))))
+ ;; '(show-paren-mismatch ((t (:background "deep pink" :foreground "gray18")))))
+
