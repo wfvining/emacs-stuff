@@ -20,6 +20,7 @@
  '(org-footnote ((t (:inherit link))))
  '(org-table ((t (:foreground "DodgerBlue1"))))
  '(org-list-dt ((t (:foreground "DeepSkyBlue1"))))
+ '(org-tag ((t (:foreground "grey17" :slant italic :weight normal))))
  '(region ((t (:background "slate grey"))))
  '(shadow ((t (:foreground "grey16"))))
  '(show-paren-match ((t (:background "gold" :foreground "black"))))
