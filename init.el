@@ -123,9 +123,8 @@
 (defconst research-journal-file "/ssh:wfvining@moons.cs.unm.edu:org/research-journal.org")
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
-(org-agenda-files
- (list
-  "/ssh:wfvining@moons.cs.unm.edu:/nfs/student/w/wfvining/org/tasks.org"))
+(setq org-agenda-files
+ (list task-file))
 (setq org-capture-templates
       '(("t" "Task" entry (file task-file)
          "* TODO [#C] %? %^g")
