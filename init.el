@@ -119,12 +119,19 @@
 ;; (require 'haskell-mode)
 
 ;; ------ Org ------
+(defconst task-file "/ssh:wfvining@moons.cs.unm.edu:org/tasks.org")
+(defconst research-journal-file "/ssh:wfvining@moons.cs.unm.edu:org/research-journal.org")
 (global-set-key "\C-ca" 'org-agenda)
-(setq org-agenda-files (list "~/org/bc-lab.org"
-                             "~/org/cs591.org"
-                             "~/org/swarmathon.org"
-                             "~/org/cs561.org"
-                             ))
+(global-set-key "\C-cc" 'org-capture)
+(org-agenda-files
+ (list
+  "/ssh:wfvining@moons.cs.unm.edu:/nfs/student/w/wfvining/org/tasks.org"))
+(setq org-capture-templates
+      '(("t" "Task" entry (file task-file)
+         "* TODO [#C] %? %^g")
+        ("n" "Research note" entry (file research-journal-file)
+         "* %? %^g\n %T")))
+(add-hook 'org-mode-hook 'turn-on-flyspell)
 
 ;(global-set-key "\C-/" 'help-command)
 (global-set-key "\C-h"   'backspace)
@@ -210,20 +217,18 @@
  '(custom-safe-themes
    (quote
     ("6e64644c0c814c9b987d80078e6d0b2a3cea65d9d2300d80378728e6053842e1" "6ab99af7083324cd2b32f62c52f1f4b2314fb0eaf2157154cfbb11f7827e8f46" "03ca904a51daef657536e604cd2e8679ecf125478fa475710561f56c3c5de103" "7f0d9571d984e14ad672f407b79febf86b6a133e316aba375cfc05860b4142cd" "1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
- '(org-agenda-files
-   (quote
-    ("~/org/tomorrow.org" "~/org/reading.org" "~/org/bc-lab.org" "~/org/cs556.org" "~/org/cs591.org" "~/org/swarmathon.org" "~/org/cs561.org" "~/org/cs530.org" "~/org/emm.org")))
  '(package-selected-packages
    (quote
-    (org stack-mode markdown-mode matlab-mode haskell-mode yaml-mode counsel erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
+    (cmake-mode org stack-mode markdown-mode matlab-mode haskell-mode yaml-mode counsel erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
  '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "simp" :family "Hack"))))
+ '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "simp" :family "Hack"))))
  '(error ((t (:foreground "firebrick1" :weight bold))))
+ '(font-lock-comment-face ((t (:inherit default :foreground "gainsboro" :slant italic))))
  '(fringe ((t (:background "gray35"))))
  '(highlight ((t (:background "gray21"))))
  '(isearch ((t (:background "coral1" :foreground "gray26"))))
