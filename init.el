@@ -137,6 +137,15 @@
         ("n" "Research note" entry (file research-journal-file)
          "* %? %^g\n %T")))
 (add-hook 'org-mode-hook 'turn-on-flyspell)
+(add-hook 'org-capture-after-finalize-hook 'org-save-all-org-buffers)
+(defun sync-org-files ()
+  (async-shell-command "unison248 -ui text -auto -batch org-sync"))
+(add-hook 'org-mode-hook
+          (lambda () (add-hook 'after-save-hook 'sync-org-files nil 'local)))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell . t)))
 
 ;(require 'org-publish)
 (setq org-publish-project-alist
