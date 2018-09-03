@@ -44,6 +44,6 @@
  '(font-lock-keyword-face ((t (:inherit default :foreground "white"))))
  '(font-lock-preprocessor-face ((t (:inherit default :foreground "#fdca40" :weight normal))))
  '(font-lock-variable-name-face ((t (:inherit default :foreground "DeepSkyBlue1"))))
- '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "simp" :family "Hack")))))
+ '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal)))))
 
 (provide-theme 'wfv-color)
