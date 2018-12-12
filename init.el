@@ -235,7 +235,7 @@
     ("bcc993e96acab0abbd6015b1fe0b72cd8806199f1e617a7c878ecdedfcafc0b6" default)))
  '(org-agenda-files
    (quote
-    ("~/org/cs600.org" "~/org/cs587.org" "~/org/tasks.org")))
+    ("~/org/tasks.org")))
  '(package-selected-packages
    (quote
     (hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
