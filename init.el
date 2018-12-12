@@ -159,16 +159,16 @@
          :recursive t
          :publishing-function org-html-publish-to-html
          :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/gen_style.css\" />"
-         :html-head-extra "<link href=\"https://fonts.googleapis.com/css?family=Playfair+Display|Raleway\" rel=\"stylesheet\"><link rel=\"icon\" href=\"img/icon.png\" />"
+         :html-head-extra "<link href=\"https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro|Source+Code+Pro\" rel=\"stylesheet\"><link rel=\"icon\" href=\"img/icon.png\" />"
          :html-head-include-default-style nil
-         :html-toplevel-hlevel 0
+         :html-toplevel-hlevel 1
          :headline-levels 4
          :auto-preamble t
          :with-toc nil
          :with-title nil
          :section-numbers nil
          :html-postamble "Published on %T"
-         :html-preamble "<ul class=\"menu\" id=\"top\"><li class=\"menu\"><a href=\"index.html\">Home</a></li><li class=\"menu\"><a href=\"index.html#misc\">Miscellany</a></li><li class=\"menu\"><a href=\"index.html#publications\">Publications</a></li></ul>"
+         :html-preamble "<ul class=\"menu\" id=\"top\"><li class=\"menu\"><a href=\"index.html\">Home</a></li><li class=\"menu\"><a href=\"index.html#publications\">Publications</a></li><li class=\"menu\"><a href=\"index.html#software\">Software</a></li><li class=\"menu\"><a href=\"index.html#contact\">Contact</a></li></ul>"
          )
 
         ("org-static"
