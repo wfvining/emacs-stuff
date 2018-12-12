@@ -60,11 +60,15 @@
 (use-package yaml-mode)
 (use-package cmake-mode)
 (use-package gnuplot-mode)
-(use-package erlang-mode)
+(use-package erlang)
 (use-package restclient)
 (use-package gnuplot)
 (use-package cmake-mode)
 (use-package yaml-mode)
+(use-package org-ref)
+
+;; shortcut for magit-status
+(global-set-key "\C-xg" 'magit-status)
 
 ;; basic appearance stuff
 (column-number-mode t)
@@ -122,10 +126,10 @@
          "* %? %^g\n %T")))
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-capture-after-finalize-hook 'org-save-all-org-buffers)
-(defun sync-org-files ()
-  (async-shell-command "unison248 -ui text -auto -batch org-sync"))
-(add-hook 'org-mode-hook
-          (lambda () (add-hook 'after-save-hook 'sync-org-files nil 'local)))
+;; (defun sync-org-files ()
+;;   (async-shell-command "unison248 -ui text -auto -batch org-sync"))
+;; (add-hook 'org-mode-hook
+;;           (lambda () (add-hook 'after-save-hook 'sync-org-files nil 'local)))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -232,6 +236,9 @@
  '(org-agenda-files
    (quote
     ("~/org/cs600.org" "~/org/cs587.org" "~/org/tasks.org")))
+ '(package-selected-packages
+   (quote
+    (hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
  '(which-function-mode t))
 
 (custom-set-faces
