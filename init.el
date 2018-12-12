@@ -60,6 +60,11 @@
 (use-package yaml-mode)
 (use-package cmake-mode)
 (use-package gnuplot-mode)
+(use-package erlang-mode)
+(use-package restclient)
+(use-package gnuplot)
+(use-package cmake-mode)
+(use-package yaml-mode)
 
 ;; basic appearance stuff
 (column-number-mode t)
@@ -72,14 +77,6 @@
 (set-default 'indent-tabs-mode nil)
 ;; Always indent after a newline (thanks ohai-emacs).
 (define-key global-map (kbd "RET") 'newline-and-indent)
-
-;(use-package ethan-wspace
-;             :demand t
-;             :commands global-ethan-wspace-mode
-;             :config
-;             (global-ethan-wspace-mode 1)
-;             :bind ("C-c c" . ethan-wspace-clean-all)
-;             :diminish ethan-wspace-mode)
 
 (setq-default tab-width 4)
 
@@ -102,19 +99,6 @@
 ;; enable electric pair mode by default
 (electric-pair-mode 1)
 
-;; ------ Erlang ------
-;(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.8.1/emacs"
-;                      load-path))
-;(setq erlang-root-dir "/usr/local/lib/erlang")
-;(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
-;(require 'erlang-start)
-
-;; ------ Io ------
-;(setq load-path (cons "~/.emacs.d/lisp" load-path))
-;(require 'io-mode)
-
-;(require 'elixir-mode)
-
 (setq erlang-indent-level 4)
 
 ;; ------ Haskell ------
@@ -125,8 +109,8 @@
 ;; (require 'haskell-mode)
 
 ;; ------ Org ------
-(defconst task-file "/ssh:wfvining@moons.cs.unm.edu:org/tasks.org")
-(defconst research-journal-file "/ssh:wfvining@moons.cs.unm.edu:org/research-journal.org")
+(defconst task-file "~/org/tasks.org")
+(defconst research-journal-file "~/org/research-journal.org")
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (setq org-agenda-files
@@ -150,6 +134,15 @@
    (octave . t)
    ;(julia . t)
    ))
+
+(require 'org-ref)
+(setq reftex-default-bibliography '("~/org/bibliography/lbsb-references.bib"))
+(setq org-ref-default-bibliography "~/org/bibliography/references.bib")
+(setq org-latex-pdf-process
+      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+	    "bibtex %b"
+	    "pdflatex -interaction nonstopmode -output-directory %o %f"
+	    "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
 ;(require 'org-publish)
 (setq org-publish-project-alist
@@ -235,13 +228,10 @@
  '(custom-enabled-themes (quote (wfv-color)))
  '(custom-safe-themes
    (quote
-    ("99c102d2b54c33ff10a6c4631d32190f288eb703abbd775ab96943690b284039" "49eb30e3bc30195eaca66ddc364bc7b1c1291203bc22196a3412392d0ddd15cf" "9d4bffc05c1f5aeb364a141c2bf886ce2b7ae3590cd7d2d4873fd55e759af715" "234a4d07d075898ecc6341519196b2d0741d89c917036b04d9a32f8e76049b91" "6e64644c0c814c9b987d80078e6d0b2a3cea65d9d2300d80378728e6053842e1" "6ab99af7083324cd2b32f62c52f1f4b2314fb0eaf2157154cfbb11f7827e8f46" "03ca904a51daef657536e604cd2e8679ecf125478fa475710561f56c3c5de103" "7f0d9571d984e14ad672f407b79febf86b6a133e316aba375cfc05860b4142cd" "1651d8d8793a68425206636eb6eddaadcea0a5893e86533456092f37ce4d8cba" "cb4043174063dd4ecef0979403613cbdce8f1a6035404f422f2e480d0524e050" "734f21e68230313dcc77120a853c7fc962c627b41a4656566d09f3ffb0fffa2b" default)))
+    ("bcc993e96acab0abbd6015b1fe0b72cd8806199f1e617a7c878ecdedfcafc0b6" default)))
  '(org-agenda-files
    (quote
-    ("~/org/cs600.org" "~/org/cs587.org" "/ssh:wfvining@moons.cs.unm.edu:org/tasks.org")))
- '(package-selected-packages
-   (quote
-    (julia-repl julia-mode gnuplot cmake-mode org stack-mode markdown-mode matlab-mode haskell-mode yaml-mode counsel erlang toml-mode company-ghci company-ghc company-erlang company cargo restclient rust-mode magit)))
+    ("~/org/cs600.org" "~/org/cs587.org" "~/org/tasks.org")))
  '(which-function-mode t))
 
 (custom-set-faces
@@ -250,3 +240,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(use-package hasklig-mode
+  :hook (haskell-mode erlang-mode))
