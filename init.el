@@ -66,6 +66,9 @@
 (use-package cmake-mode)
 (use-package yaml-mode)
 (use-package org-ref)
+(use-package slime)
+(use-package ess)
+(use-package ethan-wspace)
 
 ;; shortcut for magit-status
 (global-set-key "\C-xg" 'magit-status)
@@ -117,6 +120,10 @@
 (defconst research-journal-file "~/org/research-journal.org")
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
+(setq org-log-into-drawer t)
+(setq org-todo-keywords '((sequence "TODO" "IN PROGRESS(i!)" "BLOCKED(b@)" "|" "DONE(d!)" "CANCELED(c!)")))
+(setq org-todo-keyword-faces '(("TODO" . org-todo) ("DONE" . org-done) ("CANCELED" . (:foreground "DodgerBlue1"))
+                               ("BLOCKED" . (:foreground "DarkOrange1"))))
 (setq org-agenda-files
  (list task-file))
 (setq org-capture-templates
@@ -136,6 +143,9 @@
  '((shell . t)
    (gnuplot . t)
    (octave . t)
+   (emacs-lisp . t)
+   (lisp . t)
+   (haskell . t)
    ;(julia . t)
    ))
 
@@ -233,12 +243,11 @@
  '(custom-safe-themes
    (quote
     ("bcc993e96acab0abbd6015b1fe0b72cd8806199f1e617a7c878ecdedfcafc0b6" default)))
- '(org-agenda-files
-   (quote
-    ("~/org/tasks.org")))
+ '(org-agenda-files (quote ("~/org/tasks.org")))
  '(package-selected-packages
    (quote
-    (hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+    (ess slime hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+ '(paradox-github-token t)
  '(which-function-mode t))
 
 (custom-set-faces
