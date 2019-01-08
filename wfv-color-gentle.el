@@ -1,12 +1,12 @@
-(deftheme wfv-color
-  "Created 2017-04-16.")
+(deftheme wfv-color-gentle
+  "Created 2019-01-07.")
 
 (custom-theme-set-variables
- 'wfv-color
+ 'wfv-color-gentle
  )
 
 (custom-theme-set-faces
- 'wfv-color
+ 'wfv-color-gentle
  '(error ((t (:foreground "firebrick1" :weight bold))))
  '(fringe ((t (:background "gray35"))))
  '(highlight ((t (:background "gray21"))))
@@ -34,18 +34,17 @@
  '(org-level-7 ((t (:inherit outline-4))))
  '(org-level-1 ((t (:inherit outline-1 :foreground "MediumOrchid1"))))
  '(org-todo ((t (:foreground "Maroon2"))))
- '(font-lock-type-face ((nil (:inherit default :foreground "#8ae234" :weight normal))))
+ '(font-lock-type-face ((nil (:inherit default :foreground "aquamarine" :weight normal))))
  '(font-lock-builtin-face ((nil (:inherit font-lock-type-face :weight normal))))
  '(font-lock-comment-face ((nil (:inherit default :foreground "gainsboro" :slant italic))))
- '(font-lock-string-face ((nil (:inherit default :foreground "#34e4ea" :slant italic))))
+ '(font-lock-string-face ((nil (:inherit default :foreground "SlateGray2" :slant italic))))
  '(font-lock-warning-face ((((class color) (min-colors 88) (background dark)) (:inherit default :foreground "#db2763" :weight bold))))
  '(font-lock-constant-face ((t (:inherit font-lock-variable-name-face :foreground "white" :slant normal))))
  '(font-lock-doc-face ((t (:inherit default :foreground "gray65" :slant italic))))
  '(font-lock-function-name-face ((t (:inherit default :foreground "MediumOrchid1" :slant normal))))
  '(font-lock-keyword-face ((t (:inherit default :foreground "white"))))
- ;'(font-lock-preprocessor-face ((t (:inherit default :foreground "#fdca40" :weight normal))))
  '(font-lock-preprocessor-face ((t (:inherit default :foreground "medium sea green" :weight normal))))
  '(font-lock-variable-name-face ((t (:inherit default :foreground "DeepSkyBlue1"))))
  '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "simp" :family "Hasklig")))))
 
-(provide-theme 'wfv-color)
+(provide-theme 'wfv-color-gentle)

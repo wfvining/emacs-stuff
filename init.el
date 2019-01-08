@@ -123,6 +123,8 @@
       '(("t" "Task" entry (file task-file)
          "* TODO [#C] %? %^g")
         ("n" "Research note" entry (file research-journal-file)
+         "* %? %^g\n %T")
+        ("m" "Memory note" entry (file "memory.org")
          "* %? %^g\n %T")))
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-capture-after-finalize-hook 'org-save-all-org-buffers)
@@ -232,13 +234,12 @@
  '(custom-enabled-themes (quote (wfv-color)))
  '(custom-safe-themes
    (quote
-    ("bcc993e96acab0abbd6015b1fe0b72cd8806199f1e617a7c878ecdedfcafc0b6" default)))
- '(org-agenda-files
-   (quote
-    ("~/org/tasks.org")))
+    ("e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bcc993e96acab0abbd6015b1fe0b72cd8806199f1e617a7c878ecdedfcafc0b6" default)))
+ '(org-agenda-files (quote ("~/org/tasks.org")))
  '(package-selected-packages
    (quote
-    (hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+    (elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+ '(paradox-automatically-star nil)
  '(which-function-mode t))
 
 (custom-set-faces
@@ -250,3 +251,5 @@
 
 (use-package hasklig-mode
   :hook (haskell-mode erlang-mode))
+
+(setq paradox-github-token "3d42cd1d173d0581c7703f8aeef952dd6d59df30")
