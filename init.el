@@ -66,6 +66,8 @@
 (use-package cmake-mode)
 (use-package yaml-mode)
 (use-package org-ref)
+(use-package slime)
+(use-package ethan-wspace)
 
 ;; shortcut for magit-status
 (global-set-key "\C-xg" 'magit-status)
@@ -117,6 +119,10 @@
 (defconst research-journal-file "~/org/research-journal.org")
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
+(setq org-log-into-drawer t)
+(setq org-todo-keywords '((sequence "TODO" "IN PROGRESS(i!)" "BLOCKED(b@)" "|" "DONE(d!)" "CANCELED(c!)")))
+(setq org-todo-keyword-faces '(("TODO" . org-todo) ("DONE" . org-done) ("CANCELED" . (:foreground "DodgerBlue1"))
+                               ("BLOCKED" . (:foreground "DarkOrange1"))))
 (setq org-agenda-files
  (list task-file))
 (setq org-capture-templates
@@ -138,6 +144,9 @@
  '((shell . t)
    (gnuplot . t)
    (octave . t)
+   (emacs-lisp . t)
+   (lisp . t)
+   (haskell . t)
    ;(julia . t)
    ))
 
@@ -238,7 +247,7 @@
  '(org-agenda-files (quote ("~/org/tasks.org")))
  '(package-selected-packages
    (quote
-    (elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+    (slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
  '(paradox-automatically-star nil)
  '(which-function-mode t))
 
