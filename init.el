@@ -240,10 +240,10 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(custom-enabled-themes (quote (wfv-color)))
+ '(custom-enabled-themes (quote (wfv-color-gentle)))
  '(custom-safe-themes
    (quote
-    ("e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bcc993e96acab0abbd6015b1fe0b72cd8806199f1e617a7c878ecdedfcafc0b6" default)))
+    ("e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
  '(org-agenda-files (quote ("~/org/tasks.org")))
  '(package-selected-packages
    (quote
