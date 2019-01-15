@@ -69,6 +69,9 @@
 (use-package slime)
 (use-package ethan-wspace)
 
+;; enable ethan wspace
+(global-ethan-wspace-mode 1)
+
 ;; shortcut for magit-status
 (global-set-key "\C-xg" 'magit-status)
 
