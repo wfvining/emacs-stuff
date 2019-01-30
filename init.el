@@ -155,7 +155,8 @@
 
 (require 'org-ref)
 (setq reftex-default-bibliography '("~/org/bibliography/lbsb-references.bib"))
-(setq org-ref-default-bibliography "~/org/bibliography/references.bib")
+(setq org-ref-default-bibliography "~/org/bibliography/references.bib"
+      org-ref-bibliography-notes "~/org/bibliography/notes.org")
 (setq org-latex-pdf-process
       '("pdflatex -interaction nonstopmode -output-directory %o %f"
 	    "bibtex %b"
