@@ -68,6 +68,11 @@
 (use-package org-ref)
 (use-package slime)
 (use-package ethan-wspace)
+(use-package geiser)
+(use-package ob-elixir)
+(use-package ess)
+
+(setq geiser-default-implementation 'racket)
 
 ;; enable ethan wspace
 (global-ethan-wspace-mode 1)
@@ -118,6 +123,7 @@
 ;; (require 'haskell-mode)
 
 ;; ------ Org ------
+(load-file "ob-julia.el")
 (defconst task-file "~/org/tasks.org")
 (defconst research-journal-file "~/org/research-journal.org")
 (global-set-key "\C-ca" 'org-agenda)
@@ -150,13 +156,16 @@
    (emacs-lisp . t)
    (lisp . t)
    (haskell . t)
-   ;(julia . t)
+   (scheme . t)
+   (elixir . t)
+   (julia . t)
    ))
 
 (require 'org-ref)
 (setq reftex-default-bibliography '("~/org/bibliography/lbsb-references.bib"))
 (setq org-ref-default-bibliography "~/org/bibliography/references.bib"
       org-ref-bibliography-notes "~/org/bibliography/notes.org")
+(setq org-ref-cite-completion-function 'org-ref-ivy-cite-completion)
 (setq org-latex-pdf-process
       '("pdflatex -interaction nonstopmode -output-directory %o %f"
 	    "bibtex %b"
@@ -248,10 +257,12 @@
  '(custom-safe-themes
    (quote
     ("e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
- '(org-agenda-files (quote ("~/org/tasks.org")))
+ '(org-agenda-files
+   (quote
+    ("/usr/home/wfvining/org/dissertation-proposal.org" "~/org/tasks.org")))
  '(package-selected-packages
    (quote
-    (slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+    (ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
  '(paradox-automatically-star nil)
  '(which-function-mode t))
 
@@ -263,6 +274,6 @@
  )
 
 (use-package hasklig-mode
-  :hook (haskell-mode erlang-mode))
+  :hook (haskell-mode erlang-mode elixir-mode))
 
 (setq paradox-github-token "3d42cd1d173d0581c7703f8aeef952dd6d59df30")
