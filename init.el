@@ -123,7 +123,7 @@
 ;; (require 'haskell-mode)
 
 ;; ------ Org ------
-(load-file "ob-julia.el")
+(load-file "~/.emacs.d/ob-julia.el")
 (defconst task-file "~/org/tasks.org")
 (defconst research-journal-file "~/org/research-journal.org")
 (global-set-key "\C-ca" 'org-agenda)
@@ -171,6 +171,15 @@
 	    "bibtex %b"
 	    "pdflatex -interaction nonstopmode -output-directory %o %f"
 	    "pdflatex -interaction nonstopmode -output-directory %o %f"))
+
+;; org export latex classes and settings
+(add-to-list 'org-latex-classes
+             '("acmart" "\\documentclass{acmart}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 ;(require 'org-publish)
 (setq org-publish-project-alist
@@ -257,9 +266,7 @@
  '(custom-safe-themes
    (quote
     ("e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
- '(org-agenda-files
-   (quote
-    ("/usr/home/wfvining/org/dissertation-proposal.org" "~/org/tasks.org")))
+ '(org-agenda-files (quote ("~/org/tasks.org")))
  '(package-selected-packages
    (quote
     (ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
