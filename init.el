@@ -71,6 +71,7 @@
 (use-package geiser)
 (use-package ob-elixir)
 (use-package ess)
+(use-package alchemist)
 
 (setq geiser-default-implementation 'racket)
 
@@ -181,6 +182,21 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+(add-to-list 'org-latex-classes
+             '("tufte-book" "\\documentclass{tufte-book}"
+               ("\\part{%s}" . "\\part*{%s}")
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+
+(add-to-list 'org-latex-classes
+             '("tufte-handout" "\\documentclass{tufte-handout}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+
+
 ;(require 'org-publish)
 (setq org-publish-project-alist
       '(
@@ -269,7 +285,7 @@
  '(org-agenda-files (quote ("~/org/tasks.org")))
  '(package-selected-packages
    (quote
-    (ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+    (alchemist ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
  '(paradox-automatically-star nil)
  '(which-function-mode t))
 
