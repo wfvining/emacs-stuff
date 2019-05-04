@@ -71,6 +71,7 @@
 (use-package geiser)
 (use-package ob-elixir)
 (use-package ess)
+(use-package alchemist)
 
 (setq geiser-default-implementation 'racket)
 
@@ -153,6 +154,7 @@
  '((shell . t)
    (gnuplot . t)
    (octave . t)
+   (matlab . t)
    (emacs-lisp . t)
    (lisp . t)
    (haskell . t)
@@ -161,16 +163,24 @@
    (julia . t)
    ))
 
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (or (string= lang "elixir") (string= lang "gnuplot"))))
+(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted")))
+(setq org-latex-minted-options '(("frame" "lines") ("linenos=true")))
+
 (require 'org-ref)
 (setq reftex-default-bibliography '("~/org/bibliography/lbsb-references.bib"))
 (setq org-ref-default-bibliography "~/org/bibliography/references.bib"
       org-ref-bibliography-notes "~/org/bibliography/notes.org")
 (setq org-ref-cite-completion-function 'org-ref-ivy-cite-completion)
 (setq org-latex-pdf-process
-      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+      '("pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
 	    "bibtex %b"
-	    "pdflatex -interaction nonstopmode -output-directory %o %f"
-	    "pdflatex -interaction nonstopmode -output-directory %o %f"))
+	    "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
+	    "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"))
 
 ;; org export latex classes and settings
 (add-to-list 'org-latex-classes
@@ -180,6 +190,21 @@
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(add-to-list 'org-latex-classes
+             '("tufte-book" "\\documentclass{tufte-book}"
+               ("\\part{%s}" . "\\part*{%s}")
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+
+(add-to-list 'org-latex-classes
+             '("tufte-handout" "\\documentclass{tufte-handout}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+
 
 ;(require 'org-publish)
 (setq org-publish-project-alist
@@ -269,7 +294,7 @@
  '(org-agenda-files (quote ("~/org/research-journal.org" "~/org/tasks.org")))
  '(package-selected-packages
    (quote
-    (markdown-mode ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+    (markdown-mode alchemist ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
  '(paradox-automatically-star nil)
  '(which-function-mode t))
 
