@@ -154,6 +154,7 @@
  '((shell . t)
    (gnuplot . t)
    (octave . t)
+   (matlab . t)
    (emacs-lisp . t)
    (lisp . t)
    (haskell . t)
@@ -162,16 +163,24 @@
    (julia . t)
    ))
 
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (or (string= lang "elixir") (string= lang "gnuplot"))))
+(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted")))
+(setq org-latex-minted-options '(("frame" "lines") ("linenos=true")))
+
 (require 'org-ref)
 (setq reftex-default-bibliography '("~/org/bibliography/lbsb-references.bib"))
 (setq org-ref-default-bibliography "~/org/bibliography/references.bib"
       org-ref-bibliography-notes "~/org/bibliography/notes.org")
 (setq org-ref-cite-completion-function 'org-ref-ivy-cite-completion)
 (setq org-latex-pdf-process
-      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+      '("pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
 	    "bibtex %b"
-	    "pdflatex -interaction nonstopmode -output-directory %o %f"
-	    "pdflatex -interaction nonstopmode -output-directory %o %f"))
+	    "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
+	    "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"))
 
 ;; org export latex classes and settings
 (add-to-list 'org-latex-classes
