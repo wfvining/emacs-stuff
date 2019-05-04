@@ -206,7 +206,7 @@
 
         ("org-static"
          :base-directory "~/website/"
-         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|mp4"
          :publishing-directory "/ssh:wfvining@mack.cs.unm.edu:public_html/"
          :recursive t
          :publishing-function org-publish-attachment
@@ -266,10 +266,10 @@
  '(custom-safe-themes
    (quote
     ("e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
- '(org-agenda-files (quote ("~/org/tasks.org")))
+ '(org-agenda-files (quote ("~/org/research-journal.org" "~/org/tasks.org")))
  '(package-selected-packages
    (quote
-    (ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+    (markdown-mode ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
  '(paradox-automatically-star nil)
  '(which-function-mode t))
 
@@ -278,9 +278,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "CTDB" :family "Fira Mono"))))
+ '(font-lock-doc-face ((t (:inherit default :foreground "gainsboro" :slant italic)))))
 
-(use-package hasklig-mode
-  :hook (haskell-mode erlang-mode elixir-mode))
+;; (use-package hasklig-mode
+;;   :hook (haskell-mode erlang-mode elixir-mode))
+
+(load-file "~/.emacs.d/fira-setup.el")
+(add-hook 'elixir-mode-hook  #'fira-code-mode)
+(add-hook 'erlang-mode-hook  #'fira-code-mode)
+(add-hook 'haskell-mode-hook #'fira-code-mode)
 
 (setq paradox-github-token "3d42cd1d173d0581c7703f8aeef952dd6d59df30")
