@@ -45,7 +45,7 @@
  '(font-lock-function-name-face ((t (:inherit default :foreground "MediumOrchid1" :slant normal))))
  '(font-lock-keyword-face ((t (:inherit default :foreground "white"))))
  '(font-lock-preprocessor-face ((t (:inherit default :foreground "medium sea green" :weight normal))))
- '(font-lock-variable-name-face ((t (:inherit default :foreground "DeepSkyBlue1"))))
+ '(font-lock-variable-name-face ((t (:inherit default :foreground "SteelBlue1"))))
  '(haskell-operator-face ((t (:foreground "cyan" :weight normal))))
  '(default ((t (:inherit nil :stipple nil :background "#464646" :foreground "gray70" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "simp" :family "Hasklig")))))
 

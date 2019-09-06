@@ -301,15 +301,15 @@
  '(custom-enabled-themes (quote (wfv-color-gentle)))
  '(custom-safe-themes
    (quote
-    ("77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
+    ("a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
  '(org-agenda-files
    (quote
-    ("~/org/dissertation-proposal.org" "~/org/research-journal.org" "~/org/tasks.org")))
+    ("~/research/two-phase/two-phase.org" "~/org/dissertation-proposal.org" "~/org/research-journal.org" "~/org/tasks.org")))
  '(package-selected-packages
    (quote
     (writeroom-mode go-guru go-mode cargo rust-mode centered-window matlab-mode markdown-mode alchemist ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
  '(paradox-automatically-star nil)
- '(which-function-mode t))
+ '(which-function-mode nil))
 
 ;; (use-package hasklig-mode
 ;;   :hook (haskell-mode erlang-mode elixir-mode))
