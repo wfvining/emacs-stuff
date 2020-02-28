@@ -1,0 +1,3 @@
+[submodule "aspen-theme"]
+	path = aspen-theme
+	url = git@github.com:wfvining/aspen-theme.git
