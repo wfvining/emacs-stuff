@@ -181,9 +181,9 @@
 (setq org-ref-cite-completion-function 'org-ref-ivy-cite-completion)
 (setq org-latex-pdf-process
       '("pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
-	    "bibtex %b"
-	    "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
-	    "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"))
+        "bibtex %b"
+        "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
+        "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"))
 
 ;; org export latex classes and settings
 (add-to-list 'org-latex-classes
@@ -286,7 +286,7 @@
 
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
-;; Apearance 
+;; Apearance
 (global-hl-line-mode t) ; turn it on for all modes by default
 
 (custom-set-variables
@@ -298,10 +298,11 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(custom-enabled-themes (quote (wfv-color-gentle)))
+ '(custom-enabled-themes (quote (aspen)))
  '(custom-safe-themes
    (quote
-    ("a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
+    ("82821dfff1083673ef25c4152514d6a2a038672a18aa473fe2c83386aae2ce91" "a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
+ '(custom-theme-directory "~/.emacs.d/")
  '(org-agenda-files
    (quote
     ("~/research/two-phase/two-phase.org" "~/org/dissertation-proposal.org" "~/org/research-journal.org" "~/org/tasks.org")))
@@ -327,4 +328,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit default :family "Hasklig" :weight light)))))
