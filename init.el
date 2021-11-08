@@ -74,6 +74,34 @@
 (use-package alchemist)
 (use-package go-mode)
 (use-package go-guru)
+(use-package hasklig-mode)
+(use-package flycheck)
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (erlang-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+;; if you are helm user
+(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+(use-package dap-mode)
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+;; optional if you want which-key integration
+(use-package which-key
+    :config
+    (which-key-mode))
 
 (setq geiser-default-implementation 'racket)
 (setq inferior-lisp-program "sbcl")
@@ -273,6 +301,35 @@
 (global-set-key (kbd "C-c i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "C-c u") 'counsel-unicode-char)
 
+;; Erlang LS
+
+;; (setq lsp-keymap-prefix "C-;")
+;; (add-hook 'erlang-mode-hook #'lsp)
+;; (use-package yasnippet)
+;; (yas-global-mode t)
+;; (use-package lsp-ui)
+;; (setq lsp-ui-sideline-enable t)
+;; (setq lsp-ui-doc-enable t)
+;; (setq lsp-ui-doc-position 'bottom)
+
+;; (use-package lsp-origami)
+;; (add-hook 'origami-mode-hook #'lsp-origami-mode)
+;; (add-hook 'erlang-mode-hook #'origami-mode)
+
+;; (use-package which-key)
+;; (add-hook 'erlang-mode-hook 'which-key-mode)
+;; (with-eval-after-load 'lsp-mode
+;;   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+
+;; Always show diagnostics at the bottom, using 1/3 of the available space
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Flycheck errors*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . 0.33)))
+
 ;; Company mode
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
@@ -289,6 +346,8 @@
 ;; Apearance
 (global-hl-line-mode t) ; turn it on for all modes by default
 
+(global-display-line-numbers-mode t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -298,18 +357,16 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(custom-enabled-themes (quote (aspen)))
+ '(custom-enabled-themes '(aspen))
  '(custom-safe-themes
-   (quote
-    ("82821dfff1083673ef25c4152514d6a2a038672a18aa473fe2c83386aae2ce91" "a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default)))
+   '("80cc795c1a741290b22bd0d0814fb715a5ede6dc879bda6fb1b4d4bbcd228056" "82821dfff1083673ef25c4152514d6a2a038672a18aa473fe2c83386aae2ce91" "a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default))
  '(custom-theme-directory "~/.emacs.d/")
  '(org-agenda-files
-   (quote
-    ("~/research/two-phase/two-phase.org" "~/org/dissertation-proposal.org" "~/org/research-journal.org" "~/org/tasks.org")))
+   '("~/ai/term-paper.org" "~/org/dissertation-proposal.org" "~/org/research-journal.org" "~/org/tasks.org"))
  '(package-selected-packages
-   (quote
-    (writeroom-mode go-guru go-mode cargo rust-mode centered-window matlab-mode markdown-mode alchemist ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode)))
+   '(dash dap-mode lsp-treemacs helm-lsp lsp-ivy flycheck helm which-key lsp-origami lsp-ui yasnippet lsp-mode ivy-erlang-complete conda pytest python-pytest wc-mode fira-code-mode writeroom-mode go-guru go-mode cargo rust-mode centered-window matlab-mode markdown-mode alchemist ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode))
  '(paradox-automatically-star nil)
+ '(paradox-github-token t)
  '(which-function-mode nil))
 
 ;; (use-package hasklig-mode
@@ -322,10 +379,21 @@
 
 (add-hook 'haskell-mode-hook #'hasklig-mode)
 (add-hook 'elixir-mode-hook  #'hasklig-mode)
+(add-hook 'erlang-mode-hook  #'hasklig-mode)
 
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit default :stipple nil :background "gray24" :foreground "light gray" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 109 :width normal :foundry "ADBO" :family "Hasklig"))))
+;;  '(markdown-header-face ((t (:foreground "medium sea green" :underline t :weight normal))))
+;;  '(markdown-italic-face ((t (:slant italic))))
+;;  '(markdown-markup-face ((t (:foreground "SteelBlue1" :slant normal :weight normal)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit default :family "Hasklig" :weight light)))))
+ '(line-number ((t (:inherit (shadow default) :background "gray25" :foreground "light gray" :slant italic :weight light :family "Hasklig"))))
+ '(line-number-current-line ((t (:inherit line-number :background "gray36")))))
