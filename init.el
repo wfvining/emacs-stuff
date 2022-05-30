@@ -359,7 +359,7 @@
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(custom-enabled-themes '(aspen))
  '(custom-safe-themes
-   '("80cc795c1a741290b22bd0d0814fb715a5ede6dc879bda6fb1b4d4bbcd228056" "82821dfff1083673ef25c4152514d6a2a038672a18aa473fe2c83386aae2ce91" "a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default))
+   '("74783cbd94da768d1c21a464c99c95019d916e850fe8cf4dd498f82ed4b845c5" "4b6d236309ccc1639694f05e2fc77f9ba5ccfbe19829c25f5dbb66c8f94fb780" "cab8fa3a50d6cb8d6b1ef5f0361bc7bb81b86b8bf07c6ef96bf4da9164290764" "dc92140eef55cb06cf61a50e75bd518ab787d10560f80f27eabc83b1764af86b" "704359b9e6f2b17373a0bba8e9114822d4936511a86adfb49af92f9fd17d13dc" "80cc795c1a741290b22bd0d0814fb715a5ede6dc879bda6fb1b4d4bbcd228056" "82821dfff1083673ef25c4152514d6a2a038672a18aa473fe2c83386aae2ce91" "a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default))
  '(custom-theme-directory "~/.emacs.d/")
  '(org-agenda-files
    '("~/ai/term-paper.org" "~/org/dissertation-proposal.org" "~/org/research-journal.org" "~/org/tasks.org"))
@@ -390,10 +390,17 @@
 ;;  '(markdown-header-face ((t (:foreground "medium sea green" :underline t :weight normal))))
 ;;  '(markdown-italic-face ((t (:slant italic))))
 ;;  '(markdown-markup-face ((t (:foreground "SteelBlue1" :slant normal :weight normal)))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(line-number ((t (:inherit (shadow default) :background "gray25" :foreground "light gray" :slant italic :weight light :family "Hasklig"))))
+;;  '(line-number-current-line ((t (:inherit line-number :background "gray36")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(line-number ((t (:inherit (shadow default) :background "gray25" :foreground "light gray" :slant italic :weight light :family "Hasklig"))))
- '(line-number-current-line ((t (:inherit line-number :background "gray36")))))
+ ;'(default ((t (:inherit default :height 140))))
+ '(line-number ((t (:inherit line-number :height 0.8)))))

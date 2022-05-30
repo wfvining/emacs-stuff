@@ -28,6 +28,7 @@
  '(org-level-2 ((t (:inherit outline-3 :extend nil))))
  '(org-level-3 ((t (:inherit outline-2 :extend nil))))
  '(org-todo ((t (:foreground "dark red" :weight light))))
- '(org-done ((t (:foreground "PaleGreen4" :weight light)))))
+ '(org-done ((t (:foreground "PaleGreen4" :weight light))))
+ '(region ((t (:background "linen" :distant-foreground "gtk_selection_fg_color")))))
 
 (provide-theme 'aspen-light2)
