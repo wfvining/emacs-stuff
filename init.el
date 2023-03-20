@@ -71,19 +71,45 @@
 (use-package geiser)
 (use-package ob-elixir)
 (use-package ess)
-(use-package alchemist)
+;; (use-package alchemist)
 (use-package go-mode)
 (use-package go-guru)
 (use-package hasklig-mode)
+(use-package ligature
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; Enable all Cascadia Code ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+  ;; Enables ligature checks globally in all buffers.  You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
 (use-package flycheck)
 (use-package lsp-mode
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+  :hook ((elixir-mode . lsp)
          (erlang-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
+  :init
+  (add-to-list 'exec-path "/home/wfvining/src/elixir-ls/release/")
   :commands lsp)
 
 ;; optionally
@@ -130,6 +156,10 @@
 
 ;; Always turn on flycheck
 ;(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; ------ Encryption ---------
+(require 'epa-file)
+(epa-file-enable)
 
 ;; ------ C Indentation ------
 (setq c-default-style "linux"
@@ -305,16 +335,17 @@
 
 ;; (setq lsp-keymap-prefix "C-;")
 ;; (add-hook 'erlang-mode-hook #'lsp)
-;; (use-package yasnippet)
-;; (yas-global-mode t)
+(use-package yasnippet)
+(yas-global-mode t)
 ;; (use-package lsp-ui)
-;; (setq lsp-ui-sideline-enable t)
-;; (setq lsp-ui-doc-enable t)
-;; (setq lsp-ui-doc-position 'bottom)
+(setq lsp-ui-sideline-enable t)
+(setq lsp-ui-doc-enable t)
+(setq lsp-ui-doc-position 'bottom)
+(setq lsp-log-io t)
 
-;; (use-package lsp-origami)
-;; (add-hook 'origami-mode-hook #'lsp-origami-mode)
-;; (add-hook 'erlang-mode-hook #'origami-mode)
+(use-package lsp-origami)
+(add-hook 'origami-mode-hook #'lsp-origami-mode)
+(add-hook 'erlang-mode-hook #'origami-mode)
 
 ;; (use-package which-key)
 ;; (add-hook 'erlang-mode-hook 'which-key-mode)
@@ -331,8 +362,8 @@
               (window-height   . 0.33)))
 
 ;; Company mode
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay 0)
+;; (add-hook 'after-init-hook 'global-company-mode)
+;; (setq company-idle-delay 0)
 ;; Ivy-based interface to shell and system tools
 ;; I'm not planning on using these right now.
 ;; (global-set-key (kbd "C-c g") 'counsel-git)
@@ -348,26 +379,25 @@
 
 (global-display-line-numbers-mode t)
 
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+;(setq org-tags-exclude-from-inheritance (quote ("crypt")))
+(setq org-crypt-key nil)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(custom-enabled-themes '(aspen))
  '(custom-safe-themes
-   '("74783cbd94da768d1c21a464c99c95019d916e850fe8cf4dd498f82ed4b845c5" "4b6d236309ccc1639694f05e2fc77f9ba5ccfbe19829c25f5dbb66c8f94fb780" "cab8fa3a50d6cb8d6b1ef5f0361bc7bb81b86b8bf07c6ef96bf4da9164290764" "dc92140eef55cb06cf61a50e75bd518ab787d10560f80f27eabc83b1764af86b" "704359b9e6f2b17373a0bba8e9114822d4936511a86adfb49af92f9fd17d13dc" "80cc795c1a741290b22bd0d0814fb715a5ede6dc879bda6fb1b4d4bbcd228056" "82821dfff1083673ef25c4152514d6a2a038672a18aa473fe2c83386aae2ce91" "a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default))
+   '("18becf054238e9d384692570b33d2b75cb82ac13234c87adf0a47ca89aa63ade" "5dc81c389eca34b59265e4ed2f6fe51f611a117ecb6d41b971142537713fbf17" "74783cbd94da768d1c21a464c99c95019d916e850fe8cf4dd498f82ed4b845c5" "4b6d236309ccc1639694f05e2fc77f9ba5ccfbe19829c25f5dbb66c8f94fb780" "cab8fa3a50d6cb8d6b1ef5f0361bc7bb81b86b8bf07c6ef96bf4da9164290764" "dc92140eef55cb06cf61a50e75bd518ab787d10560f80f27eabc83b1764af86b" "704359b9e6f2b17373a0bba8e9114822d4936511a86adfb49af92f9fd17d13dc" "80cc795c1a741290b22bd0d0814fb715a5ede6dc879bda6fb1b4d4bbcd228056" "82821dfff1083673ef25c4152514d6a2a038672a18aa473fe2c83386aae2ce91" "a752b0b5dd583517745d6ee5793bcd6c249d53dbdb6d015b11b18db075f18832" "77c450cceca9d9a0f5f1389e2b62e9f634f78957385ffc308d3c2c72983752f4" "e496f0a63c251a8f0f1b9327f16e3cbd4640c39b99e56b0e79b5186a587c47d7" "bc0f5e734a1c6e82842693fd2c3656ccf83d9d18470d02b9ea5a80c387190aea" default))
  '(custom-theme-directory "~/.emacs.d/")
- '(org-agenda-files
-   '("~/ai/term-paper.org" "~/org/dissertation-proposal.org" "~/org/research-journal.org" "~/org/tasks.org"))
+ '(org-agenda-files nil)
  '(package-selected-packages
-   '(dash dap-mode lsp-treemacs helm-lsp lsp-ivy flycheck helm which-key lsp-origami lsp-ui yasnippet lsp-mode ivy-erlang-complete conda pytest python-pytest wc-mode fira-code-mode writeroom-mode go-guru go-mode cargo rust-mode centered-window matlab-mode markdown-mode alchemist ess ob-elixir slime elixir-mode ethan-wspace company-erlang hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel company cmake-mode))
+   '(company smartparens dash dap-mode lsp-treemacs helm-lsp lsp-ivy flycheck helm which-key lsp-origami lsp-ui yasnippet lsp-mode ivy-erlang-complete conda pytest python-pytest wc-mode fira-code-mode writeroom-mode go-guru go-mode cargo rust-mode centered-window matlab-mode markdown-mode ess ob-elixir slime elixir-mode ethan-wspace hasklig-mode org-ref erlang yaml-mode use-package restclient paradox magit haskell-mode gnuplot-mode gnuplot counsel cmake-mode))
  '(paradox-automatically-star nil)
- '(paradox-github-token t)
- '(which-function-mode nil))
+ '(paradox-github-token t))
 
 ;; (use-package hasklig-mode
 ;;   :hook (haskell-mode erlang-mode elixir-mode))
@@ -377,9 +407,9 @@
 ;; (add-hook 'erlang-mode-hook  #'fira-code-mode)
 ;; (add-hook 'haskell-mode-hook #'fira-code-mode)
 
-(add-hook 'haskell-mode-hook #'hasklig-mode)
-(add-hook 'elixir-mode-hook  #'hasklig-mode)
-(add-hook 'erlang-mode-hook  #'hasklig-mode)
+;; (add-hook 'haskell-mode-hook #'hasklig-mode)
+;; (add-hook 'elixir-mode-hook  #'hasklig-mode)
+;; (add-hook 'erlang-mode-hook  #'hasklig-mode)
 
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
@@ -402,5 +432,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;'(default ((t (:inherit default :height 140))))
+ '(default ((t (:font "Victor Mono" :inherit default :height 160))))
  '(line-number ((t (:inherit line-number :height 0.8)))))
+(put 'upcase-region 'disabled nil)
+
+;; doesn't work anyway
+;; (setq confirm-kill-emacs 'yes-or-no-p)
+
+;; automatically hide the boring stuff.
+(add-hook 'dired-mode-hook 'dired-omit-mode)

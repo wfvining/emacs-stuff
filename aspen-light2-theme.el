@@ -18,7 +18,7 @@
  '(highlight ((t (:background "white smoke"))))
  '(line-number ((t (:inherit (shadow default) :background "light gray" :foreground "dim gray" :slant italic :weight light :family "Hasklig"))))
  '(line-number-current-line ((t (:inherit line-number :background "light slate gray" :foreground "SlateGray2"))))
- '(font-lock-preprocessor-face ((t (:inherit default :foreground "dark slate gray" :slant italic :weight normal))))
+ '(font-lock-preprocessor-face ((t (:inherit default :foreground "dark slate gray" :slant oblique :weight normal))))
  '(font-lock-variable-name-face ((t (:inherit default :foreground "bisque4"))))
  '(font-lock-function-name-face ((t (:inherit default :foreground "SkyBlue4" :slant normal :weight normal))))
  '(font-lock-type-face ((t (:inherit default :foreground "CadetBlue4" :weight normal))))
